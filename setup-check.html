@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vérification Supabase — Kura Space</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="kura-supabase.css">
+<style>
+  main{max-width:760px;margin:60px auto;padding:0 24px;font-family:Arial,sans-serif}
+  .check{padding:15px 18px;margin:12px 0;border:1px solid var(--line);border-radius:8px;background:#fff}
+  .ok{border-color:#7aa777;background:#f3fbf2}.bad{border-color:#b56262;background:#fff3f3}
+  code{word-break:break-all}
+</style>
+</head>
+<body>
+<main>
+  <h1 style="font-family:Georgia,serif;font-weight:400">Kura Space — Vérification Supabase</h1>
+  <p style="margin:12px 0 28px;line-height:1.6">Cette page vérifie la configuration, la connexion publique à la base de données et la session administrateur.</p>
+  <div id="results"></div>
+  <p style="margin-top:28px"><a class="btn-outline" href="admin.html">Ouvrir l’administration</a></p>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
+<script src="supabase-client.js"></script>
+<script>
+(async()=>{
+  const box=document.getElementById('results');
+  const row=(ok,title,detail)=>`<div class="check ${ok?'ok':'bad'}"><strong>${ok?'✓':'✕'} ${title}</strong><div style="margin-top:6px;line-height:1.5">${detail||''}</div></div>`;
+  let html='';
+  html+=row(Boolean(window.supabase?.createClient),'Bibliothèque Supabase','Le script CDN est chargé.');
+  html+=row(Kura.configured,'Configuration du projet',Kura.configured?`Projet : <code>${Kura.config.url}</code>`:'Remplis supabase-config.js avec l’URL et la clé publishable/anon.');
+  if(!Kura.configured){box.innerHTML=html;return;}
+  try{
+    const db=Kura.requireClient();
+    const {data,error}=await db.from('settings').select('key,value').limit(1);
+    if(error) throw error;
+    html+=row(true,'Connexion à la base',`${data.length} réglage public lu avec succès.`);
+    const {data:session}=await db.auth.getSession();
+    if(session.session){
+      const admin=await Kura.isAdmin();
+      html+=row(admin,'Session administrateur',admin?'Compte autorisé dans admin_users.':'Compte connecté, mais absent de admin_users.');
+    }else{
+      html+=row(true,'Authentification','Aucune session active. Connecte-toi sur admin.html.');
+    }
+  }catch(e){html+=row(false,'Connexion à la base',String(e.message||e));}
+  box.innerHTML=html;
+})();
+</script>
+</body>
+</html>

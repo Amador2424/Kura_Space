@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin — Kura Space</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="kura-supabase.css">
+</head>
+<body>
+
+  <div class="admin-login" id="adminLogin">
+    <h1>Kura Space Admin</h1>
+    <p>Sign in to manage bookings, the waitlist, availability, projects and testimonials.</p>
+    <input type="email" id="adminEmail" placeholder="Admin email" autocomplete="username">
+    <input type="password" id="adminPassword" placeholder="Password" autocomplete="current-password" onkeydown="if(event.key==='Enter') adminLogin()">
+    <button class="btn-solid" style="width:100%;" onclick="adminLogin()">Log in</button>
+    <p id="adminLoginError" style="color:#8a3b3b; margin-top:10px; display:none;"></p>
+  </div>
+
+  <div class="admin-shell" id="adminShell" style="display:none;">
+    <div class="admin-topbar">
+      <div class="brand">KURA SPACE — ADMIN</div>
+      <button class="btn-outline" onclick="adminLogout()">Log out</button>
+    </div>
+
+    <div class="admin-tabs">
+      <div class="admin-tab active" data-tab="bookings" onclick="showTab('bookings')">Bookings</div>
+      <div class="admin-tab" data-tab="waitlist" onclick="showTab('waitlist')">Waitlist</div>
+      <div class="admin-tab" data-tab="slots" onclick="showTab('slots')">Virtual Availability</div>
+      <div class="admin-tab" data-tab="settings" onclick="showTab('settings')">In-Person Settings</div>
+      <div class="admin-tab" data-tab="portfolio" onclick="showTab('portfolio')">Portfolio</div>
+      <div class="admin-tab" data-tab="testimonials" onclick="showTab('testimonials')">Testimonials</div>
+    </div>
+
+    <div class="admin-panel active" id="panel-bookings">
+      <h2 style="font-size:22px; font-weight:400;">Bookings</h2>
+      <table class="admin-table">
+        <thead><tr><th>Date</th><th>Time</th><th>Service</th><th>Name</th><th>Email</th><th>Phone</th><th>Status</th><th>Notes</th><th></th></tr></thead>
+        <tbody id="bookingsBody"></tbody>
+      </table>
+    </div>
+
+    <div class="admin-panel" id="panel-waitlist">
+      <h2 style="font-size:22px; font-weight:400;">Waitlist</h2>
+      <table class="admin-table">
+        <thead><tr><th>Date joined</th><th>Service</th><th>Name</th><th>Email</th><th>Phone</th><th></th></tr></thead>
+        <tbody id="waitlistBody"></tbody>
+      </table>
+    </div>
+
+    <div class="admin-panel" id="panel-slots">
+      <h2 style="font-size:22px; font-weight:400;">Virtual Organizing — Availability</h2>
+      <p style="font-family:Arial,sans-serif; font-size:13px; color:#4a372f;">Add or remove bookable time slots. Booked slots cannot be deleted until the booking is cancelled.</p>
+      <div class="slot-add-row">
+        <input type="date" id="newSlotDate">
+        <input type="time" id="newSlotTime" value="09:00">
+        <button class="btn-solid" onclick="addSlot()">Add slot</button>
+        <input type="month" id="slotsMonthFilter" onchange="loadSlots()">
+      </div>
+      <table class="admin-table">
+        <thead><tr><th>Date</th><th>Time</th><th>Status</th><th></th></tr></thead>
+        <tbody id="slotsBody"></tbody>
+      </table>
+    </div>
+
+    <div class="admin-panel" id="panel-settings">
+      <h2 style="font-size:22px; font-weight:400;">In-Person Organizing — Status</h2>
+      <div class="settings-card">
+        <label>Status</label>
+        <select id="setStatus">
+          <option value="fully_booked">Fully booked</option>
+          <option value="available">Available</option>
+        </select>
+        <label>Fully booked until</label>
+        <input type="date" id="setUntil">
+        <label>Message shown to visitors</label>
+        <textarea id="setMessage"></textarea>
+        <button class="btn-solid" style="margin-top:18px;" onclick="saveSettings()">Save changes</button>
+      </div>
+    </div>
+
+    <div class="admin-panel" id="panel-portfolio">
+      <h2 style="font-size:22px; font-weight:400;">Portfolio Projects</h2>
+      <p style="font-family:Arial,sans-serif; font-size:13px; color:#4a372f;">Add the projects that appear on the public “Our Work” page.</p>
+
+      <form class="project-form" id="projectForm" onsubmit="return false;">
+        <input type="hidden" id="pfId">
+        <label>Title</label>
+        <input type="text" id="pfTitle" placeholder="Pantry Organizing">
+
+        <div class="row2">
+          <div>
+            <label>Category</label>
+            <select id="pfCategory"></select>
+          </div>
+          <div>
+            <label>Presentation</label>
+            <select id="pfPresentation">
+              <option value="before_after">Before &amp; After</option>
+              <option value="after_only">After Only (gallery)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row2">
+          <div>
+            <label>Location</label>
+            <input type="text" id="pfLocation" placeholder="Brooklyn, NY">
+          </div>
+          <div>
+            <label>Date</label>
+            <input type="text" id="pfDate" placeholder="April 2024">
+          </div>
+        </div>
+
+        <label>Short summary (shown on the project card)</label>
+        <textarea id="pfSummary" placeholder="A practical pantry system designed around the family's routines."></textarea>
+        <label>Goals</label>
+        <textarea id="pfGoals"></textarea>
+        <label>What Changed</label>
+        <textarea id="pfWhatChanged"></textarea>
+        <label>Service Format</label>
+        <input type="text" id="pfServiceFormat" placeholder="90-Minute Live Zoom Session">
+        <label>Client-Owned Items</label>
+        <textarea id="pfClientItems"></textarea>
+        <label>Purchased Items</label>
+        <textarea id="pfPurchasedItems"></textarea>
+        <label>Constraints</label>
+        <textarea id="pfConstraints"></textarea>
+
+        <label>Photos</label>
+        <div class="image-drop-row">
+          <div class="image-slot"><div class="lbl">Before</div><div class="preview" id="prevBefore">none</div><input type="file" accept="image/jpeg,image/png,image/webp,image/gif" onchange="uploadFor('before', this)"></div>
+          <div class="image-slot"><div class="lbl">After</div><div class="preview" id="prevAfter">none</div><input type="file" accept="image/jpeg,image/png,image/webp,image/gif" onchange="uploadFor('after', this)"></div>
+          <div class="image-slot"><div class="lbl">Gallery #1</div><div class="preview" id="prevGallery0">none</div><input type="file" accept="image/jpeg,image/png,image/webp,image/gif" onchange="uploadFor('gallery0', this)"></div>
+          <div class="image-slot"><div class="lbl">Gallery #2</div><div class="preview" id="prevGallery1">none</div><input type="file" accept="image/jpeg,image/png,image/webp,image/gif" onchange="uploadFor('gallery1', this)"></div>
+          <div class="image-slot"><div class="lbl">Gallery #3</div><div class="preview" id="prevGallery2">none</div><input type="file" accept="image/jpeg,image/png,image/webp,image/gif" onchange="uploadFor('gallery2', this)"></div>
+        </div>
+
+        <div class="checkbox-row">
+          <input type="checkbox" id="pfFeatured">
+          <label style="margin:0;">Feature this project (requires Before &amp; After photos)</label>
+        </div>
+
+        <div style="display:flex; gap:10px; margin-top:22px;">
+          <button class="btn-solid" onclick="saveProject()">Save Project</button>
+          <button class="btn-outline" onclick="resetProjectForm()">Clear Form</button>
+        </div>
+      </form>
+
+      <div class="admin-project-list" id="adminProjectList"></div>
+    </div>
+
+    <div class="admin-panel" id="panel-testimonials">
+      <h2 style="font-size:22px; font-weight:400;">Testimonials</h2>
+      <div class="project-form">
+        <label>Quote</label>
+        <textarea id="tQuote" placeholder="Kura Space has a gift for seeing the potential in a space..."></textarea>
+        <label>Author</label>
+        <input type="text" id="tAuthor" placeholder="Katherine M.">
+        <button class="btn-solid" style="margin-top:16px;" onclick="addTestimonial()">Add Testimonial</button>
+      </div>
+      <div class="admin-project-list" id="testimonialList"></div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
+<script src="supabase-client.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>
