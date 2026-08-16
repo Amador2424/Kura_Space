@@ -10,16 +10,16 @@
 
   <div class="eyebrow-bar">✦ A better space starts with a kura perspective. ✦</div>
 
-  <header>
-    <a href="index.html" class="logo">
-      <svg class="logo-mark" viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="2">
-        <line x1="5" y1="15" x2="20" y2="15"/><line x1="5" y1="22" x2="20" y2="22"/><line x1="5" y1="29" x2="20" y2="29"/>
-        <path d="M25 12 L35 12 M30 12 L30 30 M22 40 L38 40 M30 30 L22 40 M30 30 L38 40"/>
-        <line x1="40" y1="15" x2="55" y2="15"/><line x1="40" y1="22" x2="55" y2="22"/><line x1="40" y1="29" x2="55" y2="29"/>
-      </svg>
-      <div class="logo-text"><span class="k">KURA</span><span class="s">SPACE</span></div>
+  <header class="site-header" id="siteHeader">
+    <a href="index.html" class="logo" aria-label="Kura Space — Home">
+      <img src="logo-kura-space-horizontal-noir-transparent.png" alt="Kura Space" class="logo-image">
     </a>
-    <nav>
+
+    <button class="menu-button" id="menuButton" type="button" aria-label="Open navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="main-nav" id="mainNav">
       <div class="nav-dropdown">
         <button type="button" class="nav-toggle">SERVICES</button>
       <div class="dropdown-menu">
@@ -41,7 +41,7 @@
       <a href="faq.html">FAQS</a>
       <a href="contact.html">CONTACTS</a>
     </nav>
-    <a href="booking.html" class="cta-btn">BOOK YOUR CONSULTATION</a>
+    <a href="booking.html" class="cta-btn header-cta">BOOK YOUR CONSULTATION</a>
   </header>
 
   <section class="page-header">
@@ -101,26 +101,77 @@
     </div>
   </section>
 
-  <footer>
-    <div class="wrap">
-      <div>
-        <strong style="color:#fff; font-size:16px;">KURA SPACE</strong>
-        <p style="margin-top:8px; max-width:320px;">Better Spaces Start with a Kura Perspective.<br>Professional Organizing | Space Refresh | Unpacking | Virtual Organizing</p>
-        <nav>
-          <a href="services.html">Services</a>
-          <a href="our-work.html">Our Work</a>
-          <a href="about.html">About</a>
-          <a href="investment.html">Investment</a>
-          <a href="faq.html">FAQs</a>
-          <a href="contact.html">Contact</a>
-        </nav>
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="footer-logo-link">
+          <img src="logo-kura-space-horizontal-noir-transparent.png" alt="Kura Space" class="footer-logo">
+        </a>
+        <p>Thoughtful organization and intentional design for refined, functional spaces that bring clarity, calm, and effortless flow to your daily routines.</p>
+        <div class="social-row" aria-label="Social media">
+          <a href="#" aria-label="Instagram">IG</a>
+          <a href="#" aria-label="Pinterest">P</a>
+          <a href="mailto:hello@kuraspaceorganizing.com" aria-label="Email">@</a>
+        </div>
       </div>
+
+      <div class="footer-column">
+        <h3>QUICK LINKS</h3>
+        <a href="services.html">Services</a>
+        <a href="our-work.html">Our Work</a>
+        <a href="about.html">About Us</a>
+        <a href="investment.html">Investment</a>
+        <a href="faq.html">FAQs</a>
+        <a href="contact.html">Contact</a>
+      </div>
+
+      <div class="footer-column">
+        <h3>SERVICES</h3>
+        <a href="services.html#professional-organizing">Professional Organizing</a>
+        <a href="services.html#rearranging-space-refresh">Rearranging &amp; Space Refresh</a>
+        <a href="services.html#virtual-organizing">Virtual Organizing</a>
+        <a href="services.html#unpacking-home-setup">Unpacking &amp; Home Setup</a>
+      </div>
+
+      <div class="footer-column footer-contact">
+        <h3>CONTACT</h3>
+        <a href="mailto:hello@kuraspaceorganizing.com">hello@kuraspaceorganizing.com</a>
+        <!-- Add phone number here later -->
+        <span>Bellingham, Washington</span>
+        <span>By Appointment Only</span>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2023 Kura Space. All rights reserved.</span>
       <div>
-        <a href="mailto:hello@kuraspaceorganizing.com">hello@kuraspaceorganizing.com</a><br>
-        <a href="https://www.kuraspaceorganizing.com">www.kuraspaceorganizing.com</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
       </div>
     </div>
   </footer>
+
+  <a href="booking.html" class="mobile-booking-bar">BOOK YOUR CONSULTATION</a>
+
+  <script>
+    (function () {
+      const header = document.getElementById('siteHeader');
+      const button = document.getElementById('menuButton');
+
+      button.addEventListener('click', function () {
+        const isOpen = header.classList.toggle('mobile-open');
+        button.setAttribute('aria-expanded', String(isOpen));
+        button.setAttribute('aria-label', isOpen ? 'Close navigation' : 'Open navigation');
+      });
+
+      document.querySelectorAll('.main-nav a').forEach(function (link) {
+        link.addEventListener('click', function () {
+          header.classList.remove('mobile-open');
+          button.setAttribute('aria-expanded', 'false');
+        });
+      });
+    })();
+  </script>
 
 </body>
 </html>

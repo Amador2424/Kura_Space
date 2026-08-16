@@ -9,19 +9,20 @@
 </head>
 <body>
 
-  <div class="eyebrow-bar">✦ A better space starts with a kura perspective. ✦</div>
+  <div class="eyebrow-bar">✦ Better space starts with a kura perspective. ✦</div>
 
-  <header>
-    <a href="index.html" class="logo">
-      <svg class="logo-mark" viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="2">
-        <line x1="5" y1="15" x2="20" y2="15"/><line x1="5" y1="22" x2="20" y2="22"/><line x1="5" y1="29" x2="20" y2="29"/>
-        <path d="M25 12 L35 12 M30 12 L30 30 M22 40 L38 40 M30 30 L22 40 M30 30 L38 40"/>
-        <line x1="40" y1="15" x2="55" y2="15"/><line x1="40" y1="22" x2="55" y2="22"/><line x1="40" y1="29" x2="55" y2="29"/>
-      </svg>
-      <div class="logo-text"><span class="k">KURA</span><span class="s">SPACE</span></div>
+  <header class="site-header" id="siteHeader">
+    <a href="index.html" class="logo" aria-label="Kura Space — Home">
+      <img src="logo-kura-space-horizontal-noir-transparent.png" alt="Kura Space" class="logo-image">
     </a>
-    <nav>
-      <div class="nav-dropdown"><button type="button" class="nav-toggle">SERVICES</button>
+
+    <button class="menu-button" id="menuButton" type="button" aria-label="Open navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="main-nav" id="mainNav">
+      <div class="nav-dropdown">
+        <button type="button" class="nav-toggle">SERVICES</button>
         <div class="dropdown-menu">
           <a href="services.html#professional-organizing">Professional Organizing</a>
           <a href="services.html#rearranging-space-refresh">Rearranging &amp; Space Refresh</a>
@@ -31,21 +32,26 @@
       </div>
       <a href="our-work.html">OUR WORK</a>
       <a href="about.html">ABOUT US</a>
-      <div class="nav-dropdown"><button type="button" class="nav-toggle">INVESTMENT</button>
+      <div class="nav-dropdown">
+        <button type="button" class="nav-toggle">INVESTMENT</button>
         <div class="dropdown-menu">
           <a href="investment.html#rates">Rates by Service</a>
           <a href="investment.html#estimated-times">Estimated Project Times</a>
         </div>
       </div>
-      <a href="faq.html">FAQS</a>
-      <a href="contact.html">CONTACTS</a>
+      <a href="faq.html">FAQs</a>
+      <a href="contact.html">CONTACT</a>
     </nav>
-    <a href="contact.html" class="cta-btn">BOOK YOUR CONSULTATION</a>
+
+    <a href="booking.html" class="cta-btn header-cta">BOOK YOUR CONSULTATION</a>
   </header>
 
   <section class="booking-hero">
     <div class="img"></div>
-    <div class="txt"><h1>Book Your Service</h1><p>Choose the service that fits your needs and see our current availability.</p></div>
+    <div class="txt">
+      <h1>Book Your Service</h1>
+      <p>Choose the service that fits your needs and see our current availability.</p>
+    </div>
   </section>
 
   <div class="booking-wrap">
@@ -62,14 +68,21 @@
       <div class="divider-v"></div>
       <div class="avail-right">
         <div class="avail-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg></div>
-        <div><h3>Join the In-Person Waitlist</h3><p>Be the first to know when new in-person appointments open.</p><button class="btn-solid" onclick="openWaitlistModal()">Join Waitlist</button></div>
+        <div>
+          <h3>Join the In-Person Waitlist</h3>
+          <p>Be the first to know when new in-person appointments open.</p>
+          <button class="btn-solid" onclick="openWaitlistModal()">Join Waitlist</button>
+        </div>
       </div>
     </div>
 
     <h2 class="section-heading">Choose Your Service</h2>
     <div class="choose-service-grid">
       <div class="svc-choice-card">
-        <div class="head"><div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg></div><div><h3>In-Person Organizing</h3><div class="sub">(All Physical Services)</div></div></div>
+        <div class="head">
+          <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg></div>
+          <div><h3>In-Person Organizing</h3><div class="sub">(All Physical Services)</div></div>
+        </div>
         <p>Hands-on organizing, space refresh, rearranging, unpacking &amp; more.</p>
         <div class="cta-row">
           <button class="btn-solid fully-booked-btn" id="inPersonStatusBtn" disabled>FULLY BOOKED<small id="inPersonUntilLabel">Through —</small></button>
@@ -79,8 +92,11 @@
       </div>
 
       <div class="svc-choice-card">
-        <div class="head"><div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="12" rx="1"/><path d="M2 20h20"/></svg></div><div><h3>Virtual Organizing</h3></div></div>
-        <p>Personalized guidance, product recommendations, space planning &amp; organizing support — virtually.</p>
+        <div class="head">
+          <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="12" rx="1"/><path d="M2 20h20"/></svg></div>
+          <div><h3>Virtual Organizing</h3></div>
+        </div>
+        <p>Personalized guidance, product recommendations, space planning &amp; organizing support &mdash; virtually.</p>
         <ul><li>1:1 Virtual Consultation</li><li>Custom Action Plan</li><li>Product &amp; Layout Recommendations</li><li>Follow-Up Support</li></ul>
         <div class="cta-row"><button class="btn-solid" style="width:100%;" onclick="document.getElementById('availability').scrollIntoView({behavior:'smooth'})">See Availability &amp; Book Now</button></div>
         <div class="caption">Virtual appointments are available.</div>
@@ -118,7 +134,15 @@
     <p class="avail-footnote">Check back for newly released dates or join the waitlist for in-person services. ♥ Thank you for your understanding and support!</p>
   </div>
 
-  <section class="help-bar"><div class="wrap"><div class="left"><span class="icon-circle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18"/></svg></span><span>Have questions? Email <a class="email" href="mailto:hello@kuraspaceorganizing.com">hello@kuraspaceorganizing.com</a>.</span></div><a href="contact.html" class="btn-outline">Contact Us</a></div></section>
+  <section class="help-bar">
+    <div class="wrap">
+      <div class="left">
+        <span class="icon-circle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18"/></svg></span>
+        <span>Have questions? Email <a class="email" href="mailto:hello@kuraspaceorganizing.com">hello@kuraspaceorganizing.com</a>.</span>
+      </div>
+      <a href="contact.html" class="btn-outline">Contact Us</a>
+    </div>
+  </section>
 
   <div id="waitlistModal" style="display:none; position:fixed; inset:0; background:rgba(32,18,9,0.45); z-index:200; align-items:center; justify-content:center;">
     <div style="background:#fff; border-radius:12px; padding:32px; max-width:420px; width:90%;">
@@ -135,7 +159,78 @@
 
   <div class="toast" id="toast"></div>
 
-  <footer><div class="wrap"><div><strong style="color:#fff; font-size:16px;">KURA SPACE</strong><p style="margin-top:8px; max-width:320px;">Better Spaces Start with a Kura Perspective.<br>Professional Organizing | Space Refresh | Unpacking | Virtual Organizing</p><nav><a href="services.html">Services</a><a href="our-work.html">Our Work</a><a href="about.html">About</a><a href="investment.html">Investment</a><a href="faq.html">FAQs</a><a href="contact.html">Contact</a></nav></div><div><a href="mailto:hello@kuraspaceorganizing.com">hello@kuraspaceorganizing.com</a><br><a href="https://www.kuraspaceorganizing.com">www.kuraspaceorganizing.com</a></div></div></footer>
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="footer-logo-link">
+          <img src="logo-kura-space-horizontal-noir-transparent.png" alt="Kura Space" class="footer-logo">
+        </a>
+        <p>Better Spaces Start with a Kura Perspective.<br>Professional Organizing | Space Refresh | Unpacking | Virtual Organizing</p>
+        <div class="social-row" aria-label="Social media">
+          <a href="#" aria-label="Instagram">IG</a>
+          <a href="#" aria-label="Pinterest">P</a>
+          <a href="mailto:hello@kuraspaceorganizing.com" aria-label="Email">@</a>
+        </div>
+      </div>
+
+      <div class="footer-column">
+        <h3>QUICK LINKS</h3>
+        <a href="services.html">Services</a>
+        <a href="our-work.html">Our Work</a>
+        <a href="about.html">About Us</a>
+        <a href="investment.html">Investment</a>
+        <a href="faq.html">FAQs</a>
+        <a href="contact.html">Contact</a>
+      </div>
+
+      <div class="footer-column">
+        <h3>SERVICES</h3>
+        <a href="services.html#professional-organizing">Professional Organizing</a>
+        <a href="services.html#rearranging-space-refresh">Rearranging &amp; Space Refresh</a>
+        <a href="services.html#virtual-organizing">Virtual Organizing</a>
+        <a href="services.html#unpacking-home-setup">Unpacking &amp; Home Setup</a>
+      </div>
+
+      <div class="footer-column footer-contact">
+        <h3>CONTACT</h3>
+        <a href="mailto:hello@kuraspaceorganizing.com">hello@kuraspaceorganizing.com</a>
+        <a href="https://www.kuraspaceorganizing.com">www.kuraspaceorganizing.com</a>
+        <!-- Add phone number here later -->
+        <span>Bellingham, Washington</span>
+        <span>By Appointment Only</span>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2023 Kura Space. All rights reserved.</span>
+      <div>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+      </div>
+    </div>
+  </footer>
+
+  <a href="#availability" class="mobile-booking-bar">SEE AVAILABILITY</a>
+
+  <script>
+    (function () {
+      const header = document.getElementById('siteHeader');
+      const button = document.getElementById('menuButton');
+
+      button.addEventListener('click', function () {
+        const isOpen = header.classList.toggle('mobile-open');
+        button.setAttribute('aria-expanded', String(isOpen));
+        button.setAttribute('aria-label', isOpen ? 'Close navigation' : 'Open navigation');
+      });
+
+      document.querySelectorAll('.main-nav a').forEach(function (link) {
+        link.addEventListener('click', function () {
+          header.classList.remove('mobile-open');
+          button.setAttribute('aria-expanded', 'false');
+        });
+      });
+    })();
+  </script>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="supabase-config.js"></script>

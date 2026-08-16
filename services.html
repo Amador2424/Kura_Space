@@ -8,211 +8,357 @@
 </head>
 <body>
 
-  <div class="eyebrow-bar">✦ A better space starts with a kura perspective. ✦</div>
+  <div class="eyebrow-bar">✦ Better space starts with a kura perspective. ✦</div>
 
-  <header>
-    <a href="index.html" class="logo">
-      <svg class="logo-mark" viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="2">
-        <line x1="5" y1="15" x2="20" y2="15"/><line x1="5" y1="22" x2="20" y2="22"/><line x1="5" y1="29" x2="20" y2="29"/>
-        <path d="M25 12 L35 12 M30 12 L30 30 M22 40 L38 40 M30 30 L22 40 M30 30 L38 40"/>
-        <line x1="40" y1="15" x2="55" y2="15"/><line x1="40" y1="22" x2="55" y2="22"/><line x1="40" y1="29" x2="55" y2="29"/>
-      </svg>
-      <div class="logo-text"><span class="k">KURA</span><span class="s">SPACE</span></div>
+  <header class="site-header" id="siteHeader">
+    <a href="index.html" class="logo" aria-label="Kura Space — Home">
+      <img src="logo-kura-space-horizontal-noir-transparent.png" alt="Kura Space" class="logo-image">
     </a>
-    <nav>
-      <div class="nav-dropdown current">
+
+    <button class="menu-button" id="menuButton" type="button" aria-label="Open navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="main-nav" id="mainNav">
+      <div class="nav-dropdown">
         <button type="button" class="nav-toggle">SERVICES</button>
-      <div class="dropdown-menu">
-        <a href="services.html#professional-organizing">Professional Organizing</a>
-        <a href="services.html#rearranging-space-refresh">Rearranging & Space Refresh</a>
-        <a href="services.html#unpacking-home-setup">Unpacking & Home Setup</a>
-        <a href="services.html#virtual-organizing">Virtual Organizing</a>
-      </div>
+        <div class="dropdown-menu">
+          <a href="services.html#professional-organizing">Professional Organizing</a>
+          <a href="services.html#rearranging-space-refresh">Rearranging &amp; Space Refresh</a>
+          <a href="services.html#unpacking-home-setup">Unpacking &amp; Home Setup</a>
+          <a href="services.html#virtual-organizing">Virtual Organizing</a>
+        </div>
       </div>
       <a href="our-work.html">OUR WORK</a>
       <a href="about.html">ABOUT US</a>
       <div class="nav-dropdown">
         <button type="button" class="nav-toggle">INVESTMENT</button>
-      <div class="dropdown-menu">
-        <a href="investment.html#rates">Rates by Service</a>
-        <a href="investment.html#estimated-times">Estimated Project Times</a>
+        <div class="dropdown-menu">
+          <a href="investment.html#rates">Rates by Service</a>
+          <a href="investment.html#estimated-times">Estimated Project Times</a>
+        </div>
       </div>
-      </div>
-      <a href="faq.html">FAQS</a>
-      <a href="contact.html">CONTACTS</a>
+      <a href="faq.html">FAQs</a>
+      <a href="contact.html">CONTACT</a>
     </nav>
-    <a href="booking.html" class="cta-btn">BOOK YOUR CONSULTATION</a>
+    <a href="booking.html" class="cta-btn header-cta">BOOK YOUR CONSULTATION</a>
   </header>
 
   <section class="page-header">
     <div class="wrap">
       <div class="eyebrow">SERVICES</div>
-      <h1>Services &amp; investment</h1>
-      <p>$85/hour across every service &mdash; the minimum hours and inclusions are tailored to the scope of each project.</p>
+      <h1>Services &amp; Investment</h1>
+      <p>Thoughtful support for a home that works beautifully.</p>
+      <p>Investment varies based on the size, volume, and unique needs of your space. After your complimentary consultation, you'll receive a personalized recommendation and estimated project range.</p>
+      <p style="font-style:italic;margin-top:14px;">*Pricing is hourly with a minimum booking to reserve your appointment.</p>
     </div>
   </section>
 
-  <section style="padding-bottom:0;">
+  <section class="sv-estimates-wrap">
+    <div class="wrap">
+      <div class="sv-estimates-card">
+        <div class="sv-estimates-head">
+          <div class="sv-estimates-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+          </div>
+          <div>
+            <h3>About project estimates</h3>
+            <p>Project times are estimates provided for planning purposes and are not guaranteed completion times. Every home and project is unique, and the actual time needed may vary based on:</p>
+          </div>
+        </div>
+
+        <div class="sv-factors-grid">
+          <div class="sv-factor">
+            <div class="sv-factor-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h12l-1 12H7L6 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg></div>
+            <span>Volume of belongings</span>
+          </div>
+          <div class="sv-factor">
+            <div class="sv-factor-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="12" height="17" rx="1.5"/><rect x="9" y="2.5" width="6" height="3" rx="1"/><path d="M9 11h6M9 15h6"/></svg></div>
+            <span>Sorting &amp; decluttering required</span>
+          </div>
+          <div class="sv-factor">
+            <div class="sv-factor-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.2"/><path d="M5.5 20c1-4 4-6 6.5-6s5.5 2 6.5 6"/></svg></div>
+            <span>Client decision-making pace</span>
+          </div>
+          <div class="sv-factor">
+            <div class="sv-factor-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="3" width="12" height="18" rx="1"/><circle cx="14.5" cy="12" r="1"/></svg></div>
+            <span>Accessibility of the space &amp; layout</span>
+          </div>
+          <div class="sv-factor">
+            <div class="sv-factor-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 12V8a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v4"/><path d="M4 12h16v4a1 1 0 0 1-1 1h-1v2h-2v-2H8v2H6v-2H5a1 1 0 0 1-1-1v-4z"/></svg></div>
+            <span>Furniture or product assembly/setup</span>
+          </div>
+          <div class="sv-factor">
+            <div class="sv-factor-icon"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><circle cx="6" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="18" cy="12" r="1.6"/></svg></div>
+            <span>Unexpected conditions</span>
+          </div>
+          <div class="sv-factor">
+            <div class="sv-factor-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg></div>
+            <span>Additions or changes to scope</span>
+          </div>
+        </div>
+
+        <div class="sv-estimates-divider"></div>
+
+        <div class="sv-estimates-note">
+          <span class="sv-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg></span>
+          <p>If we anticipate that your project will require additional time beyond the estimated range, we will pause to review the progress, remaining work and expected additional time with you. <strong>Additional hours will only be continued with your approval.</strong></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sv-services-wrap">
     <div class="wrap">
 
-      <div class="service-detail" id="professional-organizing">
-        <div class="grid">
-          <div>
+      <div class="sv-card" id="professional-organizing">
+        <div class="sv-card-head">
+          <div class="sv-card-head-left">
+            <div class="sv-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4a1.6 1.6 0 1 1 1.6 1.6"/><path d="M12 5.6v2"/><path d="M12 7.6L4 13a2 2 0 0 0 1 3.7h14A2 2 0 0 0 20 13l-8-5.4z"/></svg></div>
             <h3>Professional Organizing</h3>
-            <div class="rate">$85/hour &middot; 3-hour minimum</div>
-            <p class="lede">Kitchens, pantries, closets, bedrooms, bathrooms, laundry rooms, home offices, playrooms, garages, and storage rooms.</p>
           </div>
-          <div>
-            <h4>What's included</h4>
-            <ul>
-              <li>Complimentary 30-minute virtual consultation</li>
-              <li>Personalized organizing plan &amp; lifestyle assessment</li>
-              <li>Thoughtful decluttering guidance</li>
-              <li>Sorting and categorizing belongings</li>
-              <li>Customized organizing systems</li>
-              <li>Rearranging furniture when it improves functionality</li>
-              <li>Organizing with what you already own first</li>
-              <li>Product recommendations, sourcing &amp; procurement</li>
-              <li>Labeling (upon request)</li>
-              <li>Donation assistance</li>
-              <li>Maintenance strategies &amp; follow-up recommendations</li>
-            </ul>
+          <div class="sv-card-price">$85/hour &middot; 3-hour minimum</div>
+        </div>
+        <div class="sv-card-body">
+          <p class="lede">Kitchens, pantries, closets, bedrooms, bathrooms, laundry rooms, home offices, playrooms, garages, and storage rooms.</p>
+          <div class="sv-card-grid">
+            <div>
+              <h4>What's included</h4>
+              <ul>
+                <li>Complimentary 30-minute virtual consultation</li>
+                <li>Personalized organizing plan &amp; lifestyle assessment</li>
+                <li>Thoughtful decluttering guidance</li>
+                <li>Sorting and categorizing belongings</li>
+                <li>Customized organizing systems</li>
+                <li>Rearranging furniture when it improves functionality</li>
+                <li>Organizing with what you already own first</li>
+                <li>Product recommendations, sourcing &amp; procurement</li>
+                <li>Labeling (upon request)</li>
+                <li>Donation assistance</li>
+                <li>Maintenance strategies &amp; follow-up recommendations</li>
+              </ul>
+            </div>
+            <div>
+              <h4>Estimated project time</h4>
+              <div class="sv-time-row"><span class="label">Bathroom</span><span class="leader"></span><span class="value">2&ndash;4 hrs</span></div>
+              <div class="sv-time-row"><span class="label">Pantry</span><span class="leader"></span><span class="value">3&ndash;6 hrs</span></div>
+              <div class="sv-time-row"><span class="label">Laundry Room</span><span class="leader"></span><span class="value">3&ndash;5 hrs</span></div>
+              <div class="sv-time-row"><span class="label">Bedroom</span><span class="leader"></span><span class="value">4&ndash;8 hrs</span></div>
+              <div class="sv-time-row"><span class="label">Home Office</span><span class="leader"></span><span class="value">4&ndash;8 hrs</span></div>
+              <div class="sv-time-row"><span class="label">Kitchen</span><span class="leader"></span><span class="value">6&ndash;10 hrs</span></div>
+              <div class="sv-time-row"><span class="label">Closet</span><span class="leader"></span><span class="value">4&ndash;10 hrs</span></div>
+              <div class="sv-time-row"><span class="label">Garage</span><span class="leader"></span><span class="value">8&ndash;20+ hrs</span></div>
+              <div class="sv-time-row"><span class="label">Entire Home</span><span class="leader"></span><span class="value">Varies &ndash; Custom estimate</span></div>
+            </div>
           </div>
-          <div>
-            <h4>Estimated time</h4>
-            <table class="time-table">
-              <tr><td>Bathroom</td><td>2&ndash;4 hrs</td></tr>
-              <tr><td>Pantry</td><td>3&ndash;6 hrs</td></tr>
-              <tr><td>Laundry Room</td><td>3&ndash;5 hrs</td></tr>
-              <tr><td>Bedroom</td><td>4&ndash;8 hrs</td></tr>
-              <tr><td>Home Office</td><td>4&ndash;8 hrs</td></tr>
-              <tr><td>Kitchen</td><td>6&ndash;10 hrs</td></tr>
-              <tr><td>Closet</td><td>4&ndash;10 hrs</td></tr>
-              <tr><td>Garage</td><td>8&ndash;20+ hrs</td></tr>
-              <tr><td>Whole Home</td><td>Custom estimate</td></tr>
-            </table>
-          </div>
+        </div>
+        <div class="sv-card-footnote">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>
+          <span>Estimated times are provided as a guide and may vary. Additional hours are always discussed and approved before continuing.</span>
         </div>
       </div>
 
-      <div class="service-detail" id="rearranging-space-refresh">
-        <div class="grid">
-          <div>
+      <div class="sv-card" id="rearranging-space-refresh">
+        <div class="sv-card-head">
+          <div class="sv-card-head-left">
+            <div class="sv-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 12V8a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v4"/><path d="M4 12h16v4a1 1 0 0 1-1 1h-1v2h-2v-2H8v2H6v-2H5a1 1 0 0 1-1-1v-4z"/></svg></div>
             <h3>Rearranging &amp; Space Refresh</h3>
-            <div class="rate">$85/hour &middot; 5-hour minimum</div>
-            <p class="lede">Perfect for clients who want their home to feel completely different &mdash; without renovating. Ideal for new homeowners, apartment refreshes, Airbnb styling, empty nesters, furniture rearranging, and seasonal home refreshes.</p>
           </div>
-          <div>
-            <h4>Includes everything in Professional Organizing, plus</h4>
-            <ul>
-              <li>Space planning &amp; furniture layout optimization</li>
-              <li>Room flow improvements</li>
-              <li>Decorating guidance &amp; mood board</li>
-              <li>Furniture &amp; decor recommendations</li>
-              <li>Styling shelves and surfaces</li>
-              <li>Color palette suggestions</li>
-              <li>Shopping list &amp; final styling</li>
-            </ul>
+          <div class="sv-card-price">$85/hour &middot; 5-hour minimum</div>
+        </div>
+        <div class="sv-card-body">
+          <p class="lede">Perfect for clients who want their home to feel completely different &mdash; without renovating. Ideal for new homeowners, apartment refreshes, Airbnb styling, empty nesters, furniture rearranging, and seasonal home refreshes.</p>
+          <div class="sv-card-grid">
+            <div>
+              <h4>Includes everything in Professional Organizing, plus</h4>
+              <ul>
+                <li>Space planning &amp; furniture layout optimization</li>
+                <li>Room flow improvements</li>
+                <li>Decorating guidance &amp; mood board</li>
+                <li>Furniture &amp; decor recommendations</li>
+                <li>Styling shelves and surfaces</li>
+                <li>Color palette suggestions</li>
+                <li>Shopping list &amp; final styling</li>
+              </ul>
+            </div>
+            <div>
+              <h4>Estimated project time</h4>
+              <div class="sv-time-row"><span class="label">Living Room</span><span class="leader"></span><span class="value">4&ndash;6 hrs</span></div>
+              <div class="sv-time-row"><span class="label">Bedroom</span><span class="leader"></span><span class="value">4&ndash;6 hrs</span></div>
+              <div class="sv-time-row"><span class="label">Studio Apartment</span><span class="leader"></span><span class="value">6&ndash;8 hrs</span></div>
+              <div class="sv-time-row"><span class="label">Multiple Rooms</span><span class="leader"></span><span class="value">Custom estimate</span></div>
+            </div>
           </div>
-          <div>
-            <h4>Estimated time</h4>
-            <table class="time-table">
-              <tr><td>Living Room</td><td>4&ndash;6 hrs</td></tr>
-              <tr><td>Bedroom</td><td>4&ndash;6 hrs</td></tr>
-              <tr><td>Studio Apartment</td><td>6&ndash;8 hrs</td></tr>
-              <tr><td>Multiple Rooms</td><td>Custom estimate</td></tr>
-            </table>
-          </div>
+        </div>
+        <div class="sv-card-footnote">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>
+          <span>Estimated times are provided as a guide and may vary. Additional hours are always discussed and approved before continuing.</span>
         </div>
       </div>
 
-      <div class="service-detail" id="unpacking-home-setup">
-        <div class="grid">
-          <div>
+      <div class="sv-card" id="unpacking-home-setup">
+        <div class="sv-card-head">
+          <div class="sv-card-head-left">
+            <div class="sv-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l9-4 9 4-9 4-9-4z"/><path d="M3 8v9l9 4 9-4V8"/><path d="M12 12v9"/></svg></div>
             <h3>Unpacking &amp; Home Setup</h3>
-            <div class="rate">$85/hour &middot; 6-hour minimum</div>
-            <p class="lede">Moving should feel exciting &mdash; not exhausting. We carefully unpack, organize, and thoughtfully place every item to help your new house feel like home from day one.</p>
           </div>
-          <div>
-            <h4>Includes</h4>
-            <ul>
-              <li>Complimentary one-hour in-home consultation</li>
-              <li>Complete unpacking &amp; placement of belongings</li>
-              <li>Kitchen, bathroom, closet &amp; pantry setup</li>
-              <li>Organizing systems</li>
-              <li>Furniture placement if needed</li>
-              <li>Product recommendations</li>
-              <li>Maintenance strategies</li>
-              <li>Packing material organization</li>
-              <li>Donation assistance</li>
-            </ul>
+          <div class="sv-card-price">$85/hour &middot; 6-hour minimum</div>
+        </div>
+        <div class="sv-card-body">
+          <p class="lede">Moving should feel exciting &mdash; not exhausting. We carefully unpack, organize, and thoughtfully place every item to help your new house feel like home from day one.</p>
+          <div class="sv-card-grid">
+            <div>
+              <h4>What's included</h4>
+              <ul>
+                <li>Complimentary one-hour in-home consultation</li>
+                <li>Complete unpacking &amp; placement of belongings</li>
+                <li>Kitchen, bathroom, closet &amp; pantry setup</li>
+                <li>Organizing systems</li>
+                <li>Furniture placement if needed</li>
+                <li>Product recommendations</li>
+                <li>Maintenance strategies</li>
+                <li>Packing material organization</li>
+                <li>Donation assistance</li>
+              </ul>
+            </div>
+            <div>
+              <h4>Estimated project time</h4>
+              <div class="sv-time-row"><span class="label">Apartment</span><span class="leader"></span><span class="value">6&ndash;10 hrs</span></div>
+              <div class="sv-time-row"><span class="label">2 Bedroom Home</span><span class="leader"></span><span class="value">10&ndash;16 hrs</span></div>
+              <div class="sv-time-row"><span class="label">3&ndash;4 Bedroom Home</span><span class="leader"></span><span class="value">16&ndash;30+ hrs</span></div>
+            </div>
           </div>
-          <div>
-            <h4>Estimated time</h4>
-            <table class="time-table">
-              <tr><td>Apartment</td><td>6&ndash;10 hrs</td></tr>
-              <tr><td>2 Bedroom Home</td><td>10&ndash;16 hrs</td></tr>
-              <tr><td>3&ndash;4 Bedroom Home</td><td>16&ndash;30+ hrs</td></tr>
-            </table>
-          </div>
+        </div>
+        <div class="sv-card-footnote">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>
+          <span>Estimated times are provided as a guide and may vary. Additional hours are always discussed and approved before continuing.</span>
         </div>
       </div>
 
-      <div class="service-detail" id="virtual-organizing">
-        <div class="grid">
-          <div>
+      <div class="sv-card" id="virtual-organizing">
+        <div class="sv-card-head">
+          <div class="sv-card-head-left">
+            <div class="sv-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M8 20h8M12 16v4"/></svg></div>
             <h3>Virtual Organizing</h3>
-            <div class="rate">$85/hour &middot; 3-hour minimum</div>
-            <p class="lede">Receive personalized organizing guidance from anywhere &mdash; ideal for clients outside our in-home service area.</p>
           </div>
-          <div>
-            <h4>Includes</h4>
-            <ul>
-              <li>Virtual consultation</li>
-              <li>Personalized action plan</li>
-              <li>Live step-by-step guidance</li>
-              <li>Product recommendations</li>
-              <li>Follow-up support</li>
-            </ul>
+          <div class="sv-card-price">$85/hour &middot; 3-hour minimum</div>
+        </div>
+        <div class="sv-card-body">
+          <p class="lede">Receive personalized organizing guidance from anywhere &mdash; ideal for clients outside our in-home service area.</p>
+          <div class="sv-card-grid">
+            <div>
+              <h4>What's included</h4>
+              <ul>
+                <li>Virtual consultation</li>
+                <li>Personalized action plan</li>
+                <li>Live step-by-step guidance</li>
+                <li>Product recommendations</li>
+                <li>Follow-up support</li>
+              </ul>
+            </div>
+            <div>
+              <h4>Perfect for</h4>
+              <p class="lede" style="margin:0;">Clients anywhere in the country who want expert guidance without an in-home visit.</p>
+            </div>
           </div>
-          <div>
-            <h4>Perfect for</h4>
-            <p class="lede">Clients anywhere in the country who want expert guidance without an in-home visit.</p>
-          </div>
+        </div>
+        <div class="sv-card-footnote">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>
+          <span>Estimated times are provided as a guide and may vary. Additional hours are always discussed and approved before continuing.</span>
         </div>
       </div>
 
     </div>
   </section>
 
-  <section class="contact">
+  <section class="sv-final-cta-wrap">
     <div class="wrap">
-      <div class="eyebrow" style="color:var(--peach);">READY TO BEGIN?</div>
-      <h2>Book your complimentary consultation</h2>
-      <a href="booking.html" class="hero-cta" style="margin-top:10px;">BOOK YOUR COMPLIMENTARY CONSULTATION &rarr;</a>
+      <div class="sv-final-cta">
+        <div class="eyebrow">READY TO BEGIN?</div>
+        <h2>Book Your Complimentary Consultation</h2>
+        <p>Let's create a space that feels organized, functional and beautifully you.</p>
+        <a href="booking.html" class="sv-cta-btn">BOOK A COMPLIMENTARY CONSULTATION</a>
+      </div>
+
+      <div class="sv-bottom-note">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="8.5" cy="8" r="2.6"/><circle cx="16" cy="9" r="2.2"/><path d="M3 20c.6-3.4 2.8-5.3 5.5-5.3s4.9 1.9 5.5 5.3"/><path d="M14.5 14.9c2.1.2 3.7 1.9 4.5 5.1"/></svg>
+        <p>Additional moving assistance, specialty moving equipment or third-party mover services are quoted separately when needed. All additional costs are discussed and approved before the project begins.</p>
+      </div>
     </div>
   </section>
 
-  <footer>
-    <div class="wrap">
-      <div>
-        <strong style="color:#fff; font-size:16px;">KURA SPACE</strong>
-        <p style="margin-top:8px; max-width:320px;">Better Spaces Start with a Kura Perspective.<br>Professional Organizing | Space Refresh | Unpacking | Virtual Organizing</p>
-        <nav>
-          <a href="services.html">Services</a>
-          <a href="our-work.html">Our Work</a>
-          <a href="about.html">About</a>
-          <a href="investment.html">Investment</a>
-          <a href="faq.html">FAQs</a>
-          <a href="contact.html">Contact</a>
-        </nav>
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="footer-logo-link">
+          <img src="logo-kura-space-horizontal-noir-transparent.png" alt="Kura Space" class="footer-logo">
+        </a>
+        <p>Better Spaces Start with a Kura Perspective.<br>Professional Organizing | Space Refresh | Unpacking | Virtual Organizing</p>
+        <div class="social-row" aria-label="Social media">
+          <a href="#" aria-label="Instagram">IG</a>
+          <a href="#" aria-label="Pinterest">P</a>
+          <a href="mailto:hello@kuraspaceorganizing.com" aria-label="Email">@</a>
+        </div>
       </div>
-      <div>
-        <a href="mailto:hello@kuraspaceorganizing.com">hello@kuraspaceorganizing.com</a><br>
+
+      <div class="footer-column">
+        <h3>QUICK LINKS</h3>
+        <a href="services.html">Services</a>
+        <a href="our-work.html">Our Work</a>
+        <a href="about.html">About Us</a>
+        <a href="investment.html">Investment</a>
+        <a href="faq.html">FAQs</a>
+        <a href="contact.html">Contact</a>
+      </div>
+
+      <div class="footer-column">
+        <h3>SERVICES</h3>
+        <a href="services.html#professional-organizing">Professional Organizing</a>
+        <a href="services.html#rearranging-space-refresh">Rearranging &amp; Space Refresh</a>
+        <a href="services.html#virtual-organizing">Virtual Organizing</a>
+        <a href="services.html#unpacking-home-setup">Unpacking &amp; Home Setup</a>
+      </div>
+
+      <div class="footer-column footer-contact">
+        <h3>CONTACT</h3>
+        <a href="mailto:hello@kuraspaceorganizing.com">hello@kuraspaceorganizing.com</a>
         <a href="https://www.kuraspaceorganizing.com">www.kuraspaceorganizing.com</a>
+        <!-- Add phone number here later -->
+        <span>Bellingham, Washington</span>
+        <span>By Appointment Only</span>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2023 Kura Space. All rights reserved.</span>
+      <div>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
       </div>
     </div>
   </footer>
+
+  <a href="booking.html" class="mobile-booking-bar">BOOK YOUR CONSULTATION</a>
+
+  <script>
+    (function () {
+      const header = document.getElementById('siteHeader');
+      const button = document.getElementById('menuButton');
+
+      button.addEventListener('click', function () {
+        const isOpen = header.classList.toggle('mobile-open');
+        button.setAttribute('aria-expanded', String(isOpen));
+        button.setAttribute('aria-label', isOpen ? 'Close navigation' : 'Open navigation');
+      });
+
+      document.querySelectorAll('.main-nav a').forEach(function (link) {
+        link.addEventListener('click', function () {
+          header.classList.remove('mobile-open');
+          button.setAttribute('aria-expanded', 'false');
+        });
+      });
+    })();
+  </script>
 
 </body>
 </html>
