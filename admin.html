@@ -6,7 +6,6 @@
 <title>Admin — Kura Space</title>
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="kura-supabase.css">
-<link rel="icon" type="image/png" href="favicon.ico">
 </head>
 <body>
 
@@ -32,6 +31,7 @@
       <div class="admin-tab" data-tab="settings" onclick="showTab('settings')">In-Person Settings</div>
       <div class="admin-tab" data-tab="portfolio" onclick="showTab('portfolio')">Portfolio</div>
       <div class="admin-tab" data-tab="testimonials" onclick="showTab('testimonials')">Testimonials</div>
+      <div class="admin-tab" data-tab="shop" onclick="showTab('shop')">Shop</div>
     </div>
 
     <div class="admin-panel active" id="panel-bookings">
@@ -163,6 +163,48 @@
         <button class="btn-solid" style="margin-top:16px;" onclick="addTestimonial()">Add Testimonial</button>
       </div>
       <div class="admin-project-list" id="testimonialList"></div>
+    </div>
+
+    <div class="admin-panel" id="panel-shop">
+      <h2 style="font-size:22px; font-weight:400;">Shop</h2>
+      <p style="font-family:Arial,sans-serif; font-size:13px; color:#4a372f;">Products shown on the public "Shop" page. Create a Payment Link for each product in your Stripe dashboard (Stripe → Payment Links) and paste it below — clicking "Buy" sends the visitor there to pay.</p>
+
+      <form class="project-form" id="productForm" onsubmit="return false;">
+        <input type="hidden" id="spId">
+        <label>Product name</label>
+        <input type="text" id="spName" placeholder="Labeled Bin Set (Set of 6)">
+
+        <div class="row2">
+          <div>
+            <label>Price</label>
+            <input type="text" id="spPrice" placeholder="45.00">
+          </div>
+          <div>
+            <label>Stripe Payment Link</label>
+            <input type="text" id="spStripeLink" placeholder="https://buy.stripe.com/...">
+          </div>
+        </div>
+
+        <label>Description</label>
+        <textarea id="spDescription" placeholder="Short description shown on the product card."></textarea>
+
+        <label>Photo</label>
+        <div class="image-drop-row">
+          <div class="image-slot"><div class="lbl">Product photo</div><div class="preview" id="prevProduct">none</div><input type="file" accept="image/jpeg,image/png,image/webp,image/gif" onchange="uploadProductImage(this)"></div>
+        </div>
+
+        <div class="checkbox-row">
+          <input type="checkbox" id="spActive" checked>
+          <label style="margin:0;">Show this product on the Shop page</label>
+        </div>
+
+        <div style="display:flex; gap:10px; margin-top:22px;">
+          <button class="btn-solid" onclick="saveProduct()">Save Product</button>
+          <button class="btn-outline" onclick="resetProductForm()">Clear Form</button>
+        </div>
+      </form>
+
+      <div class="admin-project-list" id="adminProductList"></div>
     </div>
   </div>
 
