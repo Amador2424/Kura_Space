@@ -7,7 +7,12 @@
     currentProjectId: null,
     imageSlots: emptyImageSlots(),
     originalStoragePaths: new Set(),
-    unsavedStoragePaths: new Set()
+    unsavedStoragePaths: new Set(),
+    products: [],
+    currentProductId: null,
+    productImage: null,
+    productOriginalStoragePath: null,
+    productUnsavedStoragePath: null
   };
 
   const $ = (id) => document.getElementById(id);
@@ -75,7 +80,7 @@
   }
 
   async function loadEverything() {
-    const jobs = [loadBookings(), loadWaitlist(), loadSlots(), loadSettings(), loadProjects(), loadTestimonials()];
+    const jobs = [loadBookings(), loadWaitlist(), loadSlots(), loadSettings(), loadProjects(), loadTestimonials(), loadProducts()];
     const results = await Promise.allSettled(jobs);
     for (const result of results) {
       if (result.status === "rejected") console.error(result.reason);
@@ -120,6 +125,7 @@
   window.adminLogout = async function adminLogout() {
     try {
       await cleanupUnsavedUploads();
+      await cleanupUnsavedProductUpload();
       await state.db.auth.signOut();
     } finally {
       showLogin();
@@ -140,7 +146,8 @@
       slots: loadSlots,
       settings: loadSettings,
       portfolio: loadProjects,
-      testimonials: loadTestimonials
+      testimonials: loadTestimonials,
+      shop: loadProducts
     };
     loaders[name]?.().catch((error) => showToast(error.message, true));
   };
@@ -605,6 +612,192 @@
       if (error) throw error;
       await loadTestimonials();
       showToast("Testimonial deleted.");
+    } catch (error) {
+      console.error(error);
+      showToast(error.message, true);
+    }
+  };
+
+  function setProductPreview(image) {
+    const preview = $("prevProduct");
+    if (!preview) return;
+    preview.innerHTML = image?.image_path
+      ? `<img src="${esc(image.image_path)}" alt="Product photo">`
+      : "none";
+  }
+
+  async function cleanupUnsavedProductUpload() {
+    const path = state.productUnsavedStoragePath;
+    if (!path || !state.db) return;
+    const { error } = await state.db.storage.from(Kura.storageBucket).remove([path]);
+    if (error) console.warn("Could not clean up unsaved product image:", error);
+    state.productUnsavedStoragePath = null;
+  }
+
+  window.uploadProductImage = async function uploadProductImage(input) {
+    const file = input.files?.[0];
+    input.value = "";
+    if (!file) return;
+
+    if (!/^image\/(jpeg|png|webp|gif)$/i.test(file.type)) {
+      showToast("Use a JPG, PNG, WEBP or GIF image.", true);
+      return;
+    }
+    if (file.size > 10 * 1024 * 1024) {
+      showToast("The image must be smaller than 10 MB.", true);
+      return;
+    }
+
+    try {
+      const { data: userData, error: userError } = await state.db.auth.getUser();
+      if (userError || !userData.user) throw userError || new Error("Session expired.");
+
+      const extension = (file.name.split(".").pop() || "jpg").toLowerCase().replace(/[^a-z0-9]/g, "");
+      const random = window.crypto?.randomUUID?.() || `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+      const storagePath = `products/${userData.user.id}/${random}.${extension}`;
+
+      await cleanupUnsavedProductUpload();
+
+      const { error: uploadError } = await state.db.storage
+        .from(Kura.storageBucket)
+        .upload(storagePath, file, { cacheControl: "3600", contentType: file.type, upsert: false });
+      if (uploadError) throw uploadError;
+
+      const { data: publicData } = state.db.storage.from(Kura.storageBucket).getPublicUrl(storagePath);
+      const image = { image_path: publicData.publicUrl, storage_path: storagePath };
+
+      state.productImage = image;
+      state.productUnsavedStoragePath = storagePath;
+      setProductPreview(image);
+      showToast("Image uploaded. Save the product to keep it.");
+    } catch (error) {
+      console.error(error);
+      showToast(error.message || "Image upload failed.", true);
+    }
+  };
+
+  async function loadProducts() {
+    const list = $("adminProductList");
+    if (!list) return;
+    list.innerHTML = '<div class="loading-inline">Loading…</div>';
+
+    const { data, error } = await state.db
+      .from("products")
+      .select("*")
+      .order("sort_order", { ascending: true })
+      .order("id", { ascending: false });
+    if (error) throw error;
+
+    state.products = data || [];
+    list.innerHTML = state.products.length ? state.products.map((product) => `
+      <div class="admin-list-card">
+        <div class="admin-list-main">
+          ${product.image_path ? `<img class="admin-project-thumb" src="${esc(product.image_path)}" alt="">` : '<div class="admin-project-thumb"></div>'}
+          <div>
+            <h3>${esc(product.name)}</h3>
+            <p>${product.price != null ? `$${esc(Number(product.price).toFixed(2))}` : "No price set"} · ${product.active ? "Visible" : "Hidden"}</p>
+          </div>
+        </div>
+        <div class="admin-list-actions">
+          <button class="btn-outline" onclick="editProduct(${Number(product.id)})">Edit</button>
+          <button class="btn-outline danger" onclick="deleteProduct(${Number(product.id)})">Delete</button>
+        </div>
+      </div>`).join("") : '<div class="empty-state">No products yet.</div>';
+  }
+
+  window.editProduct = async function editProduct(id) {
+    const product = state.products.find((item) => Number(item.id) === Number(id));
+    if (!product) return;
+
+    await cleanupUnsavedProductUpload();
+    state.currentProductId = Number(product.id);
+    state.productImage = product.image_path ? { image_path: product.image_path, storage_path: product.storage_path } : null;
+    state.productOriginalStoragePath = product.storage_path || null;
+
+    $("spId").value = product.id;
+    $("spName").value = product.name || "";
+    $("spPrice").value = product.price != null ? product.price : "";
+    $("spStripeLink").value = product.stripe_link || "";
+    $("spDescription").value = product.description || "";
+    $("spActive").checked = Boolean(product.active);
+
+    setProductPreview(state.productImage);
+    $("productForm").scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  window.resetProductForm = async function resetProductForm(options = {}) {
+    if (options.cleanup !== false) await cleanupUnsavedProductUpload();
+    $("productForm").reset();
+    $("spId").value = "";
+    $("spActive").checked = true;
+    state.currentProductId = null;
+    state.productImage = null;
+    state.productOriginalStoragePath = null;
+    setProductPreview(null);
+  };
+
+  window.saveProduct = async function saveProduct() {
+    const name = $("spName").value.trim();
+    if (!name) {
+      showToast("Product name is required.", true);
+      return;
+    }
+
+    const priceRaw = $("spPrice").value.trim();
+    const price = priceRaw ? Number(priceRaw) : null;
+    if (priceRaw && Number.isNaN(price)) {
+      showToast("Price must be a number, e.g. 45.00", true);
+      return;
+    }
+
+    const product = {
+      name,
+      price,
+      stripe_link: $("spStripeLink").value.trim() || null,
+      description: $("spDescription").value.trim(),
+      image_path: state.productImage?.image_path || null,
+      storage_path: state.productImage?.storage_path || null,
+      active: $("spActive").checked,
+      sort_order: 0
+    };
+
+    try {
+      let error;
+      if (state.currentProductId) {
+        ({ error } = await state.db.from("products").update(product).eq("id", state.currentProductId));
+      } else {
+        ({ error } = await state.db.from("products").insert(product));
+      }
+      if (error) throw error;
+
+      if (state.productOriginalStoragePath && state.productOriginalStoragePath !== product.storage_path) {
+        const { error: storageError } = await state.db.storage.from(Kura.storageBucket).remove([state.productOriginalStoragePath]);
+        if (storageError) console.warn(storageError);
+      }
+
+      state.productUnsavedStoragePath = null;
+      await resetProductForm({ cleanup: false });
+      await loadProducts();
+      showToast("Product saved.");
+    } catch (error) {
+      console.error(error);
+      showToast(error.message || "Could not save the product.", true);
+    }
+  };
+
+  window.deleteProduct = async function deleteProduct(id) {
+    if (!window.confirm("Delete this product?")) return;
+    try {
+      const product = state.products.find((item) => Number(item.id) === Number(id));
+      const { error } = await state.db.from("products").delete().eq("id", id);
+      if (error) throw error;
+      if (product?.storage_path) {
+        const { error: storageError } = await state.db.storage.from(Kura.storageBucket).remove([product.storage_path]);
+        if (storageError) console.warn(storageError);
+      }
+      if (state.currentProductId === Number(id)) await resetProductForm({ cleanup: false });
+      await loadProducts();
+      showToast("Product deleted.");
     } catch (error) {
       console.error(error);
       showToast(error.message, true);
