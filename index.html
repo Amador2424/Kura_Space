@@ -5,6 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kura Space — Better Spaces Start with a KURA Perspective</title>
   <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Hero fade override: keep text readable but reveal much more of the photo */
+    .hero-fade{
+      background:linear-gradient(90deg,
+        rgba(247,241,236,.95) 0%,
+        rgba(247,241,236,.85) 14%,
+        rgba(247,241,236,.4) 26%,
+        rgba(247,241,236,.1) 36%,
+        rgba(247,241,236,0) 44%) !important;
+    }
+    @media (max-width:760px){
+      .hero-fade{
+        background:
+          linear-gradient(180deg,rgba(247,241,236,.95) 0%,rgba(247,241,236,.8) 20%,rgba(247,241,236,.35) 36%,rgba(247,241,236,.08) 50%,rgba(247,241,236,0) 60%),
+          linear-gradient(90deg,rgba(247,241,236,.4),rgba(247,241,236,0) 55%) !important;
+      }
+    }
+  </style>
 </head>
 <body>
 
