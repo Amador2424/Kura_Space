@@ -16,10 +16,23 @@
         rgba(247,241,236,0) 44%) !important;
     }
     @media (max-width:760px){
+      /* On phones the text block is taller than any fixed-height gradient can predict,
+         so instead of fading the photo, give the text its own readable card and let
+         the photo show fully everywhere else around it. */
       .hero-fade{
-        background:
-          linear-gradient(180deg,rgba(247,241,236,.95) 0%,rgba(247,241,236,.8) 20%,rgba(247,241,236,.35) 36%,rgba(247,241,236,.08) 50%,rgba(247,241,236,0) 60%),
-          linear-gradient(90deg,rgba(247,241,236,.4),rgba(247,241,236,0) 55%) !important;
+        background:none !important;
+      }
+      .hero-shade{
+        background:linear-gradient(0deg,rgba(20,12,6,.12),transparent 22%) !important;
+      }
+      .hero-content{
+        background:rgba(247,241,236,.94) !important;
+        border-radius:16px !important;
+        margin:18px !important;
+        padding:26px 20px !important;
+        width:auto !important;
+        max-width:none !important;
+        box-shadow:0 8px 24px rgba(20,12,6,.12);
       }
     }
   </style>
