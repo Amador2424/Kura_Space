@@ -1085,6 +1085,63 @@ h2{font-weight:400;}
   .day-cell{width:30px;height:30px;line-height:30px;font-size:11.5px;}
 }
 
+/* ---------- PORTFOLIO CARDS — MOBILE FIX ---------- */
+/* On phones, project photos are often portrait-oriented. object-fit:cover (set in
+   kura-supabase.css) crops the top/bottom off. Switch to "contain" on mobile so the
+   whole photo is visible, letterboxed by the card's existing background gradient. */
+@media (max-width:760px){
+  .projects-grid .project-card-media img{
+    object-fit:contain;
+  }
+}
+
+/* ---------- ADMIN PAGE ---------- */
+.admin-login{background:#fff;border:1px solid var(--line);border-radius:14px;padding:40px 36px;box-shadow:0 20px 50px rgba(32,18,9,.08);}
+.admin-login h1{font-size:24px;font-weight:400;margin-bottom:10px;}
+.admin-login p{font-family:Arial,sans-serif;font-size:13px;line-height:1.6;color:#5c4a40;margin-bottom:22px;}
+.admin-login input{width:100%;box-sizing:border-box;padding:11px 13px;margin-bottom:12px;border:1px solid var(--line);border-radius:7px;font-family:Arial,sans-serif;font-size:13.5px;color:var(--ink);}
+.admin-login input:focus{outline:none;border-color:var(--maroon);}
+
+.admin-topbar .brand{font-family:Arial,sans-serif;font-size:13px;letter-spacing:1.2px;font-weight:700;color:var(--ink);}
+
+.settings-card{max-width:520px;margin-top:20px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:26px;}
+.settings-card label{display:block;font-family:Arial,sans-serif;font-size:12px;font-weight:700;color:#4a372f;margin:16px 0 6px;}
+.settings-card label:first-child{margin-top:0;}
+.settings-card select,.settings-card input,.settings-card textarea{width:100%;box-sizing:border-box;padding:10px 12px;border:1px solid var(--line);border-radius:7px;font-family:Arial,sans-serif;font-size:13px;color:var(--ink);}
+.settings-card textarea{min-height:90px;resize:vertical;}
+
+.slot-add-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:18px 0 22px;}
+.slot-add-row input{padding:10px 12px;border:1px solid var(--line);border-radius:7px;font-family:Arial,sans-serif;font-size:13px;color:var(--ink);}
+
+.project-form{max-width:760px;margin-top:18px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:28px;}
+.project-form label{display:block;font-family:Arial,sans-serif;font-size:12px;font-weight:700;color:#4a372f;margin:16px 0 6px;}
+.project-form label:first-of-type{margin-top:0;}
+.project-form input[type="text"],.project-form select,.project-form textarea{width:100%;box-sizing:border-box;padding:10px 12px;border:1px solid var(--line);border-radius:7px;font-family:Arial,sans-serif;font-size:13px;color:var(--ink);}
+.project-form textarea{min-height:76px;resize:vertical;}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+
+.image-drop-row{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:6px;}
+.image-slot{border:1px dashed var(--line);border-radius:10px;padding:12px;text-align:center;background:var(--cream2);}
+.image-slot .lbl{font-family:Arial,sans-serif;font-size:11px;letter-spacing:.5px;color:var(--accent);margin-bottom:8px;text-transform:uppercase;}
+.image-slot .preview{min-height:60px;display:flex;align-items:center;justify-content:center;font-family:Arial,sans-serif;font-size:11px;color:#a3948a;margin-bottom:8px;overflow:hidden;}
+.image-slot .preview img{max-width:100%;max-height:80px;border-radius:6px;object-fit:cover;}
+.image-slot input[type="file"]{width:100%;font-family:Arial,sans-serif;font-size:10.5px;}
+
+.checkbox-row{display:flex;align-items:center;gap:9px;margin-top:18px;font-family:Arial,sans-serif;font-size:13px;color:#4a372f;}
+.checkbox-row input{width:auto;}
+
+@media (max-width:900px){
+  .row2{grid-template-columns:1fr;}
+  .image-drop-row{grid-template-columns:repeat(2,1fr);}
+}
+@media (max-width:640px){
+  .admin-topbar{padding:14px 20px;flex-wrap:wrap;gap:10px;}
+  .admin-tabs{padding:14px 20px 0;overflow-x:auto;flex-wrap:nowrap;}
+  .admin-panel{padding:20px 20px 48px;}
+  .project-form,.settings-card{padding:20px;}
+  .image-drop-row{grid-template-columns:1fr 1fr;}
+}
+
 /* ---------- CONTACT PAGE ---------- */
 .contact-methods{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:8px;}
 .social-row.center{justify-content:center;}
